@@ -10,71 +10,74 @@ public class Fraction {
         this.denominator = denominator;
     }
 
-    //region: basic operations (+, -, *, /)
-    /**
-     * Adds the fraction to the other fraction. Returns a new fraction.
-     * @param other
-     * @return new fraction
-     */
+    //Plus
     public Fraction plus(Fraction other) {
-        throw new UnsupportedOperationException();
+        int tf2 = MathUtils.findLowestCommonMultiple(denominator, other.denominator);
+        int a = tf2 / denominator;
+        int b = tf2 / other.denominator;
+
+        int c = numerator * a;
+        int d = other.numerator * b;
+
+        int bojimSeMaze = c + d;
+
+        return new Fraction(bojimSeMaze, tf2);
     }
 
-    /**
-     * Subtracts other from the fraction. Returns a new fraction.
-     * @param other
-     * @return new fraction
-     */
+    //Mínus
     public Fraction minus(Fraction other) {
-        throw new UnsupportedOperationException();
+        int tf2 = MathUtils.findLowestCommonMultiple(denominator, other.denominator);
+        int a = tf2 / denominator;
+        int b = tf2 / other.denominator;
+
+        int c = numerator * a;
+        int d = other.numerator * b;
+
+        int bojimSeMaze = c - d;
+
+        return new Fraction(bojimSeMaze, tf2);
     }
 
-    /**
-     * Multiplies the two fractions. Returns a new fraction.
-     * @param other
-     * @return new fraction
-     */
+    //Násobení
     public Fraction times(Fraction other) {
-        throw new UnsupportedOperationException();
+        int timesNum = numerator * other.numerator;
+        int timesDen = denominator * other.denominator;
+
+        return new Fraction(timesNum, timesDen);
     }
 
-    /**
-     * Divides the two fractions (this / other). Returns a new fraction.
-     * @param other
-     * @return new fraction
-     */
+    //Dělení
     public Fraction dividedBy(Fraction other) {
-        throw new UnsupportedOperationException();
-    }
-    //endregion
+        int divideNum = numerator * other.denominator;
+        int divideDen = denominator * other.numerator;
 
-    //region: other operations
-    /**
-     * Gets the reciprocal (flipped) of the fraction. ie. reciprocal of 1/2 is 2/1
-     * @return new fraction
-     */
+        return new Fraction(divideNum, divideDen);
+    }
+
+    // přehození
     public Fraction getReciprocal() {
-        throw new UnsupportedOperationException();
+        return new Fraction(getDenominator(), getNumerator());
     }
 
-    /**
-     * Simplifies the fraction
-     * @return new fraction
-     */
+    //Zjednodušit
     public Fraction simplify() {
-        throw new UnsupportedOperationException();
+        int tf2PlsHrajte = MathUtils.findGreatestCommonDenominator(numerator, denominator);
+        int a = numerator / tf2PlsHrajte;
+        int b = denominator / tf2PlsHrajte;
+        return new Fraction(a, b);
     }
 
-    /**
-     * Calculates the floating value of the fraction.
-     * @return float
-     */
+    //Vydělit na desetinou blbost
     public float toFloat() {
-        throw new UnsupportedOperationException();
+        float desetinecislo = 0;
+        if (denominator != 0) {
+            desetinecislo = (float) numerator / (float) denominator;
+        } else {
+            System.out.println("Nulou se nedá dělit");
+        }
+        return desetinecislo;
     }
-    //endregion
 
-    //region: getters
     public int getNumerator() {
         return numerator;
     }
@@ -82,5 +85,4 @@ public class Fraction {
     public int getDenominator() {
         return denominator;
     }
-    //endregion
 }

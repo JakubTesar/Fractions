@@ -17,25 +17,26 @@ public class MathUtils {
      * největší společný dělitel
      */
     public static int findGreatestCommonDenominator(int a, int b) {
-        int one = 0;
-        int two = 0;
-        int greatestCommonDenominator = 0;
-        boolean ano = false;
+        ArrayList<Integer> list = new ArrayList<>();
+        int gcd = 0;
 
-        for (int i = 1; i < b; i++) {
-            if (a % i == 0) {
-                one = i;
-            }
-            if (b % i == 0) {
-                two = i;
-            }
-            if (one == two) {
-                greatestCommonDenominator = one;
-                ano = true;
+        float a2 = (float) a;
+        float b2 = (float) b;
+
+        for (int i = 0; i <= a; i++) {
+            if (a2 / i == Math.floor(a2 / i)) {
+                list.add(i);
             }
         }
-        return greatestCommonDenominator;
+        for (int i = b; i <= b; i--) {
+            if ((b2 / i == Math.floor(b2 / i)) && list.contains(i)) {
+                gcd = i;
+                return gcd;
+            }
+        }
+        return 0;
     }
+
 
     /**
      * Calculates the lowest common multiple.
